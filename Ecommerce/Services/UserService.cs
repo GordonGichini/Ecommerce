@@ -22,12 +22,8 @@ namespace Ecommerce.Services
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return "user Added Successfully";
+            return "User Added Successfully";
         }
 
-        Task IUser.GetUserByEmail(string email)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

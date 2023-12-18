@@ -54,7 +54,7 @@ namespace Ecommerce.Controllers
 
         [HttpPost]
         [Authorize(Policy = "AdminPolicy")]
-        public async Task<ActionResult<string>> AddProduct(AddProductDto newProduct)
+        public async Task<ActionResult<string>> AddProduct(AddProductDto ProductDto)
         {
             var newProduct = _mapper.Map<Product>(ProductDto);
             var response = await _productService.AddProduct(newProduct);
@@ -63,9 +63,9 @@ namespace Ecommerce.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Policy = "AdminPolicy")]
-        public async Task<ActionResult<string>> UpdateProduct(Guid id, UpdateProductDto uProduct)
+        public async Task<ActionResult<string>> UpdateProduct(Guid id, ProductDto uProduct)
         {
-            var product = await _productService.GetProductById(id);
+            var product = await _productService.GetProduct(id);
 
             if (product == null)
             {
@@ -82,7 +82,7 @@ namespace Ecommerce.Controllers
         [Authorize(Policy = "AdminPolicy")]
         public async Task<ActionResult<string>> DeleteProduct(Guid id)
         {
-            var product = await _productService.GetProductById(id);
+            var product = await _productService.GetProduct(id);
 
             if (product == null)
             {

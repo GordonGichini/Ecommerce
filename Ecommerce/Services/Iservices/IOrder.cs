@@ -9,7 +9,7 @@ namespace Ecommerce.Services.Iservices
         Task<string> AddOrder(OrderDto orderDto);
         Task<string> UpdateOrder(Guid orderId, OrderDto orderDto);
         Task<bool> DeleteOrder(Guid orderId);
-        Task GetUserOrders(Guid userId);
+        Task<string> GetUserOrders(Guid userId);
     }
 
 

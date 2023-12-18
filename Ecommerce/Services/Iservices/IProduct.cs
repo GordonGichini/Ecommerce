@@ -1,14 +1,15 @@
-﻿using Ecommerce.Models.Dtos;
+﻿using Ecommerce.Models;
 
 namespace Ecommerce.Services.Iservices
 {
     public interface IProduct
     {
-        Task<List<ProductDto>> GetAllProducts();
-        Task<ProductDto> GetProductById(Guid productId);
-        Task<string> AddProduct(ProductDto productDto);
-        Task<string> UpdateProduct(Guid productId, ProductDto productDto);
-        Task<bool> DeleteProduct(Guid productId);
+        Task<List<Product>> GetAllProducts();
+        Task<Product> GetProduct(Guid id);
+        Task<string> AddProduct(Product p);
+        Task<string> UpdateProduct(Product p);
+        Task<bool> DeleteProduct(Product p);
+      
     }
 
 

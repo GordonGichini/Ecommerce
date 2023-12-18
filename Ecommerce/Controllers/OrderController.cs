@@ -1,28 +1,19 @@
 ﻿using AutoMapper;
 using Ecommerce.Models;
 using Ecommerce.Models.Dtos;
-using Ecommerce.Services;
 using Ecommerce.Services.Iservices;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrdersController : ControllerBase
+    public class OrdersController(IOrder orderService, IMapper mapper) : ControllerBase
     {
-        private readonly IOrder _orderService;
-        private readonly IMapper _mapper;
-
-        public OrdersController(IOrder orderService, IMapper mapper)
-        {
-            _orderService = orderService;
-            _mapper = mapper;
-        }
+        private readonly IOrder _orderService = orderService;
+        private readonly IMapper _mapper = mapper;
 
         [HttpGet]
         public async Task<ActionResult<List<Order>>> GetAllOrders()
@@ -45,9 +36,9 @@ namespace Ecommerce.Controllers
 
         [HttpPost]
         [Authorize(Policy = "AdminPolicy")]
-        public async Task<ActionResult<string>> AddOrder(AddOrderDto orderDto)
+        public async Task<ActionResult<string>> AddOrder(AddOrderDto OrderDto)
         {
-            var newOrder = _mapper.Map<Order>(orderDto);
+            var newOrder = _mapper.Map<Order>(OrderDto);
             var response = await _orderService.AddOrder(newOrder);
             return Created($"Orders/{newOrder.Id}", response);
         }

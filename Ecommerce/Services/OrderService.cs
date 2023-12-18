@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ecommerce.Data;
+using Ecommerce.Models;
 using Ecommerce.Models.Dtos;
 using Ecommerce.Services.Iservices;
 
@@ -37,6 +38,11 @@ namespace Ecommerce.Services
         }
 
         Task<bool> IOrder.DeleteOrder(Guid orderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task GetUserOrders(Guid userId)
         {
             throw new NotImplementedException();
         }

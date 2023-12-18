@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using Ecommerce.Data;
-using Ecommerce.Models.Dtos;
+using Ecommerce.Models;
 using Ecommerce.Services.Iservices;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Services
 {
@@ -16,30 +17,38 @@ namespace Ecommerce.Services
             _mapper = mapper;
         }
 
-        Task<List<ProductDto>> IProduct.GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        Task<ProductDto> IProduct.GetProductById(Guid productId)
+        public async Task<List<Product>> GetProduct(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Products.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        Task<string> IProduct.AddProduct(ProductDto productDto)
+        public async Task<string> AddProduct(Product p)
         {
-            throw new NotImplementedException();
+            await _context.Products.AddAsync(p);
+            await _context.SaveChangesAsync();
+            return "Product Added Successfully";
         }
 
-        Task<string> IProduct.UpdateProduct(Guid productId, ProductDto productDto)
+        
+        public async Task<string>UpdateProduct(Product p)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(p);
+            await _context.SaveChangesAsync();
+            return "Product updated Successfully";
         }
 
-        Task<bool> IProduct.DeleteProduct(Guid productId)
+        public async Task<bool>DeleteProduct(Product p)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(p);
+            await _context.SaveChangesAsync();
+            return true;
         }
+
     }
 
 }
