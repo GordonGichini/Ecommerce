@@ -32,9 +32,9 @@ namespace Ecommerce.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<ActionResult<List<Product>>> FilterProducts([FromQuery] string name, [FromQuery] decimal? price)
+        public async Task<ActionResult<List<Product>>> FilterProducts([FromQuery] string name, [FromQuery] int? price)
         {
-            var filteredProducts = await _productService.FilterProducts(name, price);
+            var filteredProducts = await _productService.FilterProducts(name, (int)price);
             return Ok(filteredProducts);
         }
 

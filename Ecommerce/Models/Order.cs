@@ -4,9 +4,12 @@
     {
         public Guid Id { get; set; }
 
-        // Foreign key for relationship with User
+        public DateTime OrderDate { get; set; }
         public Guid UserId { get; set; }
-        public User user { get; set; } = default!;
+
+        public Guid ProductId { get; set; }
+        
+        public List<Product> Products { get; set; } = new List<Product>();
 
     }
 }

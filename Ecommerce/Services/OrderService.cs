@@ -17,22 +17,22 @@ namespace Ecommerce.Services
             _mapper = mapper;
         }
 
-        Task<List<OrderDto>> IOrder.GetAllOrders()
+        Task<List<UserOrderDto>> IOrder.GetAllOrders()
         {
             throw new NotImplementedException();
         }
 
-        Task<OrderDto> IOrder.GetOrderById(Guid orderId)
+        Task<UserOrderDto> IOrder.GetOrderById(Guid orderId)
         {
             throw new NotImplementedException();
         }
 
-        Task<string> IOrder.AddOrder(OrderDto orderDto)
+        Task<string> IOrder.AddOrder(UserOrderDto orderDto)
         {
             throw new NotImplementedException();
         }
 
-        Task<string> IOrder.UpdateOrder(Guid orderId, OrderDto orderDto)
+        Task<string> IOrder.UpdateOrder(Guid orderId, UserOrderDto orderDto)
         {
             throw new NotImplementedException();
         }
